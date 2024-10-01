@@ -15,11 +15,11 @@ const userSchema = new mongoose.Schema ({
 });
 userSchema.plugin(findOrCreate);
 const User=mongoose.model("User",userSchema);
-app.post("/login", function(req, res){
+app.post("/login",async function(req, res){
   var x=req;
   try{
-    x=jwt.jwtDecode(x.body.response.credential)
-    User.findOrCreate({name:x.name,email:x.email,googleId:x.sub});
+    x=await jwt.jwtDecode(x.body.response.credential)
+    await User.findOrCreate({name:x.name,email:x.email,googleId:x.sub});
   }catch(err){
     console.log(err);
   }
