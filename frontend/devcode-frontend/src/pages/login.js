@@ -15,6 +15,7 @@ import axios from "axios";
     })
     .then((response) => {
       localStorage.setItem('usergoogleId',response.data);
+      console.log(localStorage.getItem('usergoogleId'));
       window.location.href=("/");
       // Redirect or handle login success as needed
     })
