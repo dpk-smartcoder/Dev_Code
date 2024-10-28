@@ -1,17 +1,16 @@
 import React, { useState } from "react";
 import Header from "../components/header";
 import Footer from "../components/footer";
-
+import axios from "axios";
 function ContributeQuestion() {
-    const [title, setTitle] = useState("");
-    const [description, setDescription] = useState("");
-    const [difficulty, setDifficulty] = useState("easy");
-    const [tags, setTags] = useState("");
-
-    const handleSubmit = (e) => {
+    const [css, setcss] = useState("");
+    const [element, setelement] = useState("");
+    const handleSubmit =async (e) => {
         e.preventDefault();
-        // Handle form submission logic here
-        console.log({ title, description, difficulty, tags });
+        const r=await axios.post("http://localhost:8000/addquestion",{
+            css:css,element:element
+        }).then((r)=>{if(r.data===true)alert("Question added succesfully!!");else alert("Some error occured during submission")}).catch((err)=>{console.log.err();});
+        setcss("");setelement("");
     };
 
     return (
@@ -21,58 +20,30 @@ function ContributeQuestion() {
                 <h1 className="text-3xl font-bold text-center mb-10 mt-6">Create the CSS Challenge Question</h1>
                 <form onSubmit={handleSubmit} className="bg-white shadow-md rounded-lg p-6 mb-14">
                     <div className="mb-4">
-                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="title">
-                            Question Title
-                        </label>
-                        <input
-                            type="text"
-                            id="title"
-                            value={title}
-                            onChange={(e) => setTitle(e.target.value)}
-                            required
-                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        />
-                    </div>
-                    <div className="mb-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="description">
-                            Question Description
+                            HTML Element
                         </label>
                         <textarea
                             id="description"
-                            value={description}
-                            onChange={(e) => setDescription(e.target.value)}
+                            value={element}
+                            onChange={(e) => setelement(e.target.value)}
                             required
-                            rows="4"
+                            rows="10"
                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         ></textarea>
                     </div>
                     <div className="mb-4">
-                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="difficulty">
-                            Difficulty Level
+                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="description">
+                            Answer CSS
                         </label>
-                        <select
-                            id="difficulty"
-                            value={difficulty}
-                            onChange={(e) => setDifficulty(e.target.value)}
+                        <textarea
+                            id="description"
+                            value={css}
+                            onChange={(e) => setcss(e.target.value)}
+                            required
+                            rows="10"
                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        >
-                            <option value="easy">Easy</option>
-                            <option value="medium">Medium</option>
-                            <option value="hard">Hard</option>
-                        </select>
-                    </div>
-                    <div className="mb-10">
-                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="tags">
-                            Tags (comma separated)
-                        </label>
-                        <input
-                            type="text"
-                            id="tags"
-                            value={tags}
-                            onChange={(e) => setTags(e.target.value)}
-                            placeholder="e.g., CSS, Flexbox, Grid"
-                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        />
+                        ></textarea>
                     </div>
                     <div className="flex items-center justify-center">
                         <button
