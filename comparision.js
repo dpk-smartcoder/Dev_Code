@@ -31,7 +31,7 @@ const css2 = `
     }
 `;
 
-export async function takeScreenshot(css, outputPath) {
+export async function takeScreenshot(element,css, outputPath) {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
     await page.setContent(`
@@ -40,7 +40,7 @@ export async function takeScreenshot(css, outputPath) {
             <style>${css}</style>
         </head>
         <body>
-            <div class="test-element">Test Element</div>
+            ${element}
         </body>
         </html>
     `);
@@ -58,14 +58,31 @@ export function compareImages(img1Path, img2Path, diffPath) {
     fs.writeFileSync(diffPath, PNG.sync.write(diff));
     return numDiffPixels;
 }
-export async function main() {
-    await takeScreenshot(css1, 'output1.png');
-    await takeScreenshot(css2, 'output2.png');
-
+export async function verdictChecker(params) {
+    await takeScreenshot(params.element,params.css1, 'output1.png');
+    await takeScreenshot(params.element,params.css2, 'output2.png');
     const diffPixels = compareImages('output1.png', 'output2.png', 'diff.png');
-    console.log(`Number of different pixels: ${diffPixels}`);
     fs.unlinkSync('output1.png');
     fs.unlinkSync('output2.png');
     fs.unlinkSync('diff.png');
+    if(diffPixels===0){return true;}
+    return false;
 }
 
+export async function questionImageCapture(params) {
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    await page.setContent(`
+        <html>
+        <head>
+            <style>${params.css}</style>
+        </head>
+        <body>
+            ${params.element}
+        </body>
+        </html>
+    `);
+    var s= (await page.screenshot({type:PNG,encoding:"base64"}));
+    await browser.close();
+    return s.toString('base64');
+}
