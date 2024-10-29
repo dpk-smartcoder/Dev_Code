@@ -108,7 +108,7 @@ app.post("/submit",async (req,res)=>{
             css2:css,
             element:element
         };
-        const v=verdictChecker(obj);
+        const v=await verdictChecker(obj);
         if(new Date(c.startTime.getTime()+3600000)>t&&new Date(c.startTime.getTime())<=t){
             if(v){
             var s= new Submission({

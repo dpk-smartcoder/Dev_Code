@@ -69,6 +69,8 @@ export async function verdictChecker(params) {
     return false;
 }
 
+
+
 export async function questionImageCapture(params) {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
