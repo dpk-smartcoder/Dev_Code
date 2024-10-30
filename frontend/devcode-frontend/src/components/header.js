@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
+import prLogo from "../images/prLogo.png"
 import { NavLink } from "react-router-dom";
 function Header(){
     const [isloggedin,setItem]=useState(false);
@@ -16,7 +17,13 @@ function Header(){
         {isloggedin&&<li className="text-white text-lg hover:bg-blue-800 rounded-lg p-2 m-2 select-none hover:opacity-90"><NavLink to={"/contribute"} >Contribute a Question</NavLink></li>}
         {isloggedin&&<li className="text-white text-lg hover:bg-blue-800 rounded-lg p-2 m-2 select-none hover:opacity-90"><NavLink to={"/about"} >About</NavLink></li>}
         {!isloggedin&&<li className="text-white text-lg hover:bg-blue-800 rounded-lg p-2 m-2 m-r-2 select-none hover:opacity-90"><NavLink to={"/login"} >Login</NavLink></li>}
-        {isloggedin&&<li className="text-white text-lg hover:bg-blue-800 rounded-lg p-2 m-2 m-r-2 select-none hover:opacity-90"><NavLink to={"/profile"} >Profile</NavLink></li>}
+        {isloggedin&&<li className="text-white text-lg  p-2 m-2 m-r-2 select-none hover:opacity-90"><NavLink to={"/profile"} >
+        <img 
+            src={prLogo}
+            alt="Profile"
+            className="h-8 w-8 rounded-full transition-transform transform hover:scale-110 hover:opacity-80"
+        />
+        </NavLink></li>}
     </ul>
 </div>
 }

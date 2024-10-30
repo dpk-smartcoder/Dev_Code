@@ -28,8 +28,8 @@ import axios from "axios";
     <div>
       <Header></Header>
       <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-purple-300 via-purple-400 to-purple-500">
-        <div className="flex flex-col md:flex-row bg-white rounded-lg shadow-lg overflow-hidden mb-24 mt-20 p-4 hover:bg-slate-100">
-          <div className="p-6 md:w-1/2 max-w-sm mx-auto bg-white rounded-lg justify-center mt-18 shadow-md text-center hover:bg-slate-50">
+        <div className="flex flex-col md:flex-row bg-white rounded-lg shadow-lg overflow-hidden mb-24 mt-20 p-12 hover:bg-slate-100">
+        <div className="bg-white shadow-lg rounded-lg p-8 max-w-md w-full transition-transform transform hover:scale-105 hover:shadow-xl hover:bg-gray-50">
             <h2 className="text-3xl font-bold text-purple-600 mt-5">Login</h2>
             <p className="text-gray-600 mb-6 mt-5">Welcome back! Please login to your account.</p>
             <div className="mt-6 text-center">
@@ -43,7 +43,7 @@ import axios from "axios";
             </div>
             <p className="text-gray-900">Unleash your creativity and showcase your skills! Every entry is a step closer to greatness—let your passion shine!</p>
           </div>
-          <div className="hidden md:block md:w-1/2 p-6 bg-gradient-to-r from-purple-100 to-purple-300 flex items-center justify-center">
+          <div className="bg-white shadow-lg rounded-lg p-8 max-w-md ml-8 w-full transition-transform transform hover:scale-105 hover:shadow-xl hover:bg-gray-100">
             <img
               src={pic}
               alt="Login Illustration"
