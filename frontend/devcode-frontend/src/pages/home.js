@@ -40,7 +40,7 @@ function Home() {
           {/* Contest List */}
           <div className="flex space-x-8 mb-12">
             <div className="w-1/2 bg-gray-100 p-6 rounded-lg shadow hover:bg-slate-200">
-              <h3 className="text-xl font-bold mb-2">1. First ontest</h3>
+              <h3 className="text-xl font-bold mb-2">1. First Contest</h3>
               <p className="text-gray-600 mb-1">Started 20 hours ago</p>
               <p className="text-gray-600 mb-4">Duration: 40 minutes</p>
               <button className="bg-black text-white py-2 px-4 rounded-md hover:bg-gray-800">
