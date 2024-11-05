@@ -6,7 +6,7 @@ import Footer from "../components/footer";
 // Method to give a shortened name to a longer unique ID
 function generateMeaningfulName(id) {
     const baseName = "Contest"; // Base name
-    const numericSuffix = parseInt(id) % 100; // Generate a numeric suffix (last 2 digits)
+    const numericSuffix = parseInt(parseInt(id) % 1000); // Generate a numeric suffix (last 2 digits)
     return `${baseName}${numericSuffix}`;
 }
 
