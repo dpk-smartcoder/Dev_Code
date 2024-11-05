@@ -39,7 +39,7 @@ export async function takeScreenshot(element,css, outputPath) {
         <head>
             <style>${css}</style>
         </head>
-        <body>
+        <body class="body">
             ${element}
         </body>
         </html>
@@ -79,7 +79,7 @@ export async function questionImageCapture(params) {
         <head>
             <style>${params.css}</style>
         </head>
-        <body>
+        <body class="body">
             ${params.element}
         </body>
         </html>
