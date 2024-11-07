@@ -127,8 +127,10 @@ app.post("/submit",async (req,res)=>{
 
 app.post("/conteststandings", async (req,res)=>{
     try{
-        const c = await Contest.findOne({_id:cId});
-        const subArr=await Submission.find({qId:c.qId},{uId:1,t:1},{sort:{time:1}});
+        const c = await Contest.findOne({_id:req.body.cId});
+        // const subArr=await Submission.find({qId:c.qId},{uId:1,t:1},{sort:{time:1}});
+        
+        const subArr = await Submission.aggregate([ { $match: { qId: c.qId } }, { $lookup: { from: 'users', localField: 'uId', foreignField: 'googleId', as: 'userDetails' } }, { $unwind: '$userDetails' }, { $project: { _id: 1, uId: 1, qId: 1, t: 1, 'userDetails.email': 1, 'userDetails.name': 1 } }, { $sort: { t: 1 } } ]);
         res.json(subArr);
     }catch(err){
         console.log(err);
