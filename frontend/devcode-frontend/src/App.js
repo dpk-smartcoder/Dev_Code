@@ -7,6 +7,7 @@ import PastContests from "./pages/past_contests";
 import UpcomingContest from "./pages/upcoming_contest";
 import CodePlayground from "./pages/code_playground";
 import Profile from "./pages/profile";
+import ContestRanking from "./pages/contest_ranking";
 const router=createBrowserRouter([
   {path:"/",element:<Home></Home>},
   {path:"/about",element:<About></About>},
@@ -15,7 +16,8 @@ const router=createBrowserRouter([
   {path:"/pastcontests",element:<PastContests></PastContests>},
   {path:"/upcomingcontest",element:<UpcomingContest></UpcomingContest>},
   {path:"/question/:qId/:cId/:uId",element:<CodePlayground></CodePlayground>},
-  {path:"/profile",element:<Profile></Profile>}
+  {path:"/rankings/:qId/:cId/:uId",element:<ContestRanking></ContestRanking>},
+  {path:"/profile",element:<Profile></Profile>},
 ]);
 function App() {
   return (

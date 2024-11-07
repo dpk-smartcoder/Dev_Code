@@ -13,7 +13,7 @@ function CodePlayground() {
     const { qId, cId, uId } = useParams();
     const [DynamicElement,setD]=useState(styled.div`
     .body{
-        width:397px !important;
+        width:417px !important;
         height:320px !important;
         }
         ${css}
@@ -33,7 +33,7 @@ function CodePlayground() {
     async function check(e) {
         e.preventDefault();
         try {
-            const response = await axios.post("http://localhost:8000/submit", { css: css, qId: qId, cId: cId });
+            const response = await axios.post("http://localhost:8000/submit", { css: css, qId: qId, cId: cId ,uId:uId});
             if (response.data === true) {
                 setIsSubmitted(true);
                 alert("Correct answer!!!");
@@ -55,6 +55,7 @@ function CodePlayground() {
             <h1 className="text-2xl text-white text-center mb-6">
                 Code Playground for Question ID {parseInt(qId)%1000}, Contest {parseInt(cId)%1000}, User ID {parseInt(uId)%1000}
             </h1>
+            <h1 onClick={async ()=>{ window.location.href = `/rankings/${qId}/${cId}/${uId}`;}}>Contest Rankings</h1>
             <div className="flex justify-between mb-6">
                 <div className="flex flex-col items-center w-1/2 p-4">
                     <h2 className="text-xl mb-4 text-white">Element</h2>
@@ -87,7 +88,7 @@ function CodePlayground() {
                     onChange={(e) => {setCss(e.target.value);
                                 {setD(styled.div`
                                 .body{
-                                    width:397px !important;
+                                    width:417px !important;
                                     height:320px !important;
                                     }
                                     ${css}
