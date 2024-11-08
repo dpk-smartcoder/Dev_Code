@@ -52,18 +52,19 @@ function CodePlayground() {
     return (
         <div className="bg-gray-900  min-h-screen p-5 mb-12">
             <Header />
-            <h1 className="text-2xl text-white text-center mb-6">
-                Code Playground for Question ID {parseInt(qId)%1000}, Contest {parseInt(cId)%1000}, User ID {parseInt(uId)%1000}
-            </h1>
-            <h1 onClick={async ()=>{ window.location.href = `/rankings/${qId}/${cId}/${uId}`;}}>Contest Rankings</h1>
+            <div className="flex justify-end p-4"><button  className="text-center text-lg font-bold text-white bg-gray-600 px-4 py-2 rounded-lg" onClick={async ()=>{ window.location.href = `/rankings/${qId}/${cId}/${uId}`;}}>Contest Rankings</button>
+            </div>
+            <p className="mb-4 text-purple-600 text-center font-bold ">HTML for question</p>
+            <div className="flex justify-center">
+            <p className="mb-4 text-gray-400 text-center max-w-80">{element}</p></div>
             <div className="flex justify-between mb-6">
-                <div className="flex flex-col items-center w-1/2 p-4">
-                    <h2 className="text-xl mb-4 text-white">Element</h2>
-                    <p className="mb-4 text-white">{element}</p>
-                    <img src={`data:image/png;base64,${image}`} alt="Element" className="h-80 mb-4 transition-transform duration-300 hover:scale-105" />
+                <div className="flex flex-col items-center w-1/2 ">
+                    <h2 className="text-xl font-bold text-white">Element</h2>
+                    <br></br>
+                    <img src={`data:image/png;base64,${image}`} alt="Element" className="h-80 pt-9 mb-4 transition-transform duration-300 hover:scale-105" />
                 </div>
                 <div className="flex flex-col items-center w-2/3 p-4">
-                    <h2 className="text-xl mb-4 text-white">Output</h2>
+                    <h2 className="text-xl mb-2 font-bold text-white">Output</h2>
                     <div className="border-2 h-80 w-auto mt-9 flex justify-center items-center bg-gray-800 relative">
                         {/* <style>
                             {`
@@ -79,8 +80,9 @@ function CodePlayground() {
                     </div>
                 </div>
             </div>
-            <h1 className={`text-xl text-white text-center mb-4 ${!isSubmitted && "hidden"}`}>Submitted</h1>
-            <form className="flex flex-col items-center text-white" onSubmit={check}>
+            <div className="flex justify-center">
+            <h1 className={`text-xl text-white font-bold w-36 rounded-sm text-center bg-green-600 mb-4 ${!isSubmitted && "hidden"}`}>Submitted</h1>
+            </div><form className="flex flex-col items-center text-white" onSubmit={check}>
                 <label htmlFor="description" className="mb-2 text-lg">Answer CSS</label>
                 <textarea
                     id="description"

@@ -18,26 +18,31 @@ function ContestRanking(){
             time: `${hours}:${minutes}` // Return formatted time
         };
     }
-
+    const [urank,seturank]=useState("-");
     const [ranks,setranks]=useState([]);
     async function fetchQuestion() {
         try {
             const r = await axios.post("http://localhost:8000/conteststandings", { cId: cId });
             setranks(r.data);
+            for(let i=0;i<r.data.length;i++){
+                if(r.data[i].uId===uId){seturank(`${i+1}`);} 
+            }
         } catch (err) {
             console.error(err);
         }
     }
     useEffect(() => {
         fetchQuestion();
+        
     }, []);
     const { qId, cId, uId } = useParams();
     return <div>
     <Header></Header>
     <h1>contest rankings</h1>
     <h1> for Question ID {parseInt(qId)%1000}, Contest {parseInt(cId)%1000}, User ID {parseInt(uId)%1000}</h1>
+    <h1>Your Rank = {urank}</h1>
     {ranks.map((u,index)=>{
-    const { date, time } = formatDateTime(u.t);    
+    const { date, time } = formatDateTime(u.t);   
     return <div>
     <p>rank : {index+1} username : {u.userDetails.name} userid : {u.userDetails.email} time : {time}</p><br></br>
     </div>})}
