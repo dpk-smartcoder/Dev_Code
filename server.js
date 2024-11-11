@@ -32,6 +32,7 @@ const contestSchema = new mongoose.Schema({
 const submissionSchema = new mongoose.Schema({
     uId:String,
     qId:String,
+    cId:String,
     t:Date,
 });
 userSchema.plugin(findOrCreate);
@@ -110,11 +111,13 @@ app.post("/submit",async (req,res)=>{
         };
         const v=await verdictChecker(obj);
         if(new Date(c.startTime.getTime()+3600000)>t&&new Date(c.startTime.getTime())<=t){
-            if(v){
+            const b=await Submission.findOne({uId:req.body.uId,cId:req.body.cId});
+            if(v & b===null){
             var s= new Submission({
                 uId:req.body.uId,
                 qId:q._id,
                 t:t,
+                cId:req.body.cId,
             });
             await s.save();}
             res.json(v);
@@ -130,7 +133,7 @@ app.post("/conteststandings", async (req,res)=>{
         const c = await Contest.findOne({_id:req.body.cId});
         // const subArr=await Submission.find({qId:c.qId},{uId:1,t:1},{sort:{time:1}});
         
-        const subArr = await Submission.aggregate([ { $match: { qId: c.qId } }, { $lookup: { from: 'users', localField: 'uId', foreignField: 'googleId', as: 'userDetails' } }, { $unwind: '$userDetails' }, { $project: { _id: 1, uId: 1, qId: 1, t: 1, 'userDetails.email': 1, 'userDetails.name': 1 } }, { $sort: { t: 1 } } ]);
+        const subArr = await Submission.aggregate([ { $match: { cId: req.body.cId } }, { $lookup: { from: 'users', localField: 'uId', foreignField: 'googleId', as: 'userDetails' } }, { $unwind: '$userDetails' }, { $project: { _id: 1, uId: 1, qId: 1, t: 1, 'userDetails.email': 1, 'userDetails.name': 1 } }, { $sort: { t: 1 } } ]);
         res.json(subArr);
     }catch(err){
         console.log(err);
