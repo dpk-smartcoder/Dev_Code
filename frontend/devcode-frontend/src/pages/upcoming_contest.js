@@ -49,27 +49,36 @@ function UpcomingContest() {
             <Header />
             <div className="container mx-auto p-6">
                 <h1 className="text-3xl font-bold text-center mb-8">Upcoming Contests</h1>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {uc.map((u) => {
-                        const meaningfulName = generateMeaningfulName(u._id); // Generate meaningful name
-                        const { date, time } = formatDateTime(u.startTime); // Format start time
+                {uc.length > 0 ? (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {uc.map((u) => {
+                            const meaningfulName = generateMeaningfulName(u._id); // Generate meaningful name
+                            const { date, time } = formatDateTime(u.startTime); // Format start time
 
-                        return (
-                            <div
-                                key={u._id}
-                                onClick={() => { navigateToQuestion(u); }}
-                                className="bg-white shadow-lg rounded-lg overflow-hidden transform transition-transform duration-300 hover:scale-105 cursor-pointer"
-                            >
-                                <div className="p-4">
-                                    <h2 className="text-xl font-semibold text-gray-800">{meaningfulName}</h2>
-                                    {/* <p className="text-gray-600">Contest ID: {u._id}</p> */}
-                                    <p className="text-gray-600">Date: {date}</p>
-                                    <p className="text-gray-600">Time: {time}</p>
+                            return (
+                                <div
+                                    key={u._id}
+                                    onClick={() => { navigateToQuestion(u); }}
+                                    className="bg-white shadow-lg rounded-lg overflow-hidden transform transition-transform duration-300 hover:scale-105 cursor-pointer"
+                                >
+                                    <div className="p-4">
+                                        <h2 className="text-xl font-semibold text-gray-800">{meaningfulName}</h2>
+                                        <p className="text-gray-600">Date: {date}</p>
+                                        <p className="text-gray-600">Time: {time}</p>
+                                    </div>
                                 </div>
-                            </div>
-                        );
-                    })}
-                </div>
+                            );
+                        })}
+                    </div>
+                ) : (
+                    <div className="flex flex-col items-center justify-center h-64 bg-white rounded-lg shadow-md p-6">
+                        <h2 className="text-xl font-semibold text-gray-800 mb-4">No Live Contests</h2>
+                        <p className="text-gray-600 text-center">
+                            Currently, there are no upcoming contests. Please check back later for updates!
+                            <p>You can give Past Contests to shapen your skills !</p>
+                        </p>
+                    </div>
+                )}
             </div>
             <Footer />
         </div>

@@ -31,7 +31,7 @@ function Home() {
   return (
     <div>
       <Header />
-      <div className="container mx-auto px-4 py-10">
+      <div className="container mx-auto px-4 py-10 select-none">
         {/* Welcome Section */}
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold mb-4">Welcome to Dev Code</h1>
@@ -56,14 +56,14 @@ function Home() {
 
         {/* Upcoming Contests Section */}
         <div>
-          <h2 className="text-3xl font-semibold mb-4">Wanna try your skills?</h2>
+          <h2 className="text-3xl font-semibold mb-4">Would you like to test your skills?</h2>
           <p className="text-gray-600 mb-8">
             Check out the upcoming programming contests on Dev Code.
           </p>
 
           {/* Contest List */}
           <div className="flex space-x-8 mb-12">
-            <div className="w-1/2 bg-gray-100 p-6 rounded-lg shadow hover:bg-slate-200">
+            <div className="w-96 bg-gray-100 p-6 rounded-lg shadow hover:bg-slate-200">
               <h3 className="text-xl font-bold mb-2">See Upcoming Contest</h3>
               <button onClick={upcoming} className="bg-black text-white py-2 px-4 rounded-md hover:bg-gray-800">
                 Participate
