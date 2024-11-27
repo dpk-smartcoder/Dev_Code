@@ -50,22 +50,20 @@ function CodePlayground() {
     }, []);
 
     return (
-        <div className="bg-gray-900  min-h-screen p-5 mb-12">
+        <div className="bg-black  min-h-screen p-5 mb-12">
             <Header />
-            <div className="flex justify-end p-4"><button  className="text-center text-lg font-bold text-white bg-gray-600 px-4 py-2 rounded-lg" onClick={async ()=>{ window.location.href = `/rankings/${qId}/${cId}/${uId}`;}}>Contest Rankings</button>
-            </div>
-            <p className="mb-4 text-purple-600 text-center font-bold ">HTML for question</p>
+            <div className="flex justify-end align-middle p-4 space-x-5"><h1 className={`text-xl text-white font-bold w-36 rounded-lg text-center py-2 bg-green-600 ${!isSubmitted && "hidden"}`}>Submitted</h1><button  className="text-center text-lg font-bold text-white bg-gray-600 px-4 py-2 rounded-lg" onClick={async ()=>{ window.location.href = `/rankings/${qId}/${cId}/${uId}`;}}>Contest Rankings</button></div>
+            <p className="mb-4 text-purple-600 text-2xl text-center font-bold ">HTML for question</p>
             <div className="flex justify-center">
-            <p className="mb-4 text-gray-400 text-center max-w-80">{element}</p></div>
-            <div className="flex justify-between mb-6">
-                <div className="flex flex-col items-center w-1/2 ">
-                    <h2 className="text-xl font-bold text-white">Element</h2>
-                    <br></br>
-                    <img src={`data:image/png;base64,${image}`} alt="Element" className="h-80 pt-9 mb-4 transition-transform duration-300 hover:scale-105" />
+            <p className=" text-gray-400 text-center mb-3 max-w-80">{element}</p></div>
+            <div className="flex justify-center my-5"><div className="flex justify-between w-2/3">
+                <div className="flex flex-col items-center ">
+                    <h2 className="text-xl font-bold text-white pb-6">Element</h2>
+                    <img src={`data:image/png;base64,${image}`} alt="Element" className="h-80 img transition-transform duration-300 hover:scale-105" />
                 </div>
-                <div className="flex flex-col items-center w-2/3 p-4">
-                    <h2 className="text-xl mb-2 font-bold text-white">Output</h2>
-                    <div className="border-2 h-80 w-auto mt-9 flex justify-center items-center bg-gray-800 relative">
+                <div className="flex flex-col items-center ">
+                    <h2 className="text-xl  font-bold text-white pb-6">Output</h2>
+                    <div className=" h-80 w-auto flex justify-center items-center bg-gray-700 transition-transform duration-300 hover:scale-105">
                         {/* <style>
                             {`
                                 .output-container {
@@ -75,15 +73,15 @@ function CodePlayground() {
                                 }
                             `}
                         </style> */}
-                        <DynamicElement className="h-80" dangerouslySetInnerHTML={{ __html: element }} />
+                        <DynamicElement className="h-80 " dangerouslySetInnerHTML={{ __html: element }} />
                         {/* <div className="output-container" dangerouslySetInnerHTML={{ __html: `<body>${element}</body>` }} /> */}
                     </div>
                 </div>
-            </div>
+            </div></div>
             <div className="flex justify-center">
-            <h1 className={`text-xl text-white font-bold w-36 rounded-sm text-center bg-green-600 mb-4 ${!isSubmitted && "hidden"}`}>Submitted</h1>
-            </div><form className="flex flex-col items-center text-white" onSubmit={check}>
-                <label htmlFor="description" className="mb-2 text-lg">Answer CSS</label>
+           
+            </div><form className="flex flex-col items-center text-white mt-8" onSubmit={check}>
+                <label htmlFor="description" className="mb-6 text-lg">Answer CSS</label>
                 <textarea
                     id="description"
                     value={css}
@@ -98,7 +96,7 @@ function CodePlayground() {
                             }}
                     required
                     rows="10"
-                    className="w-full max-w-md h-40 border border-white bg-gray-800 text-white p-2 mb-4 rounded-lg resize-none focus:border-purple-500 focus:outline-none"
+                    className="w-full max-w-md h-40 border border-white bg-gray-700 text-white p-2 mb-4 rounded-lg resize-none focus:border-purple-500 focus:outline-none"
                 />
                 <button
                     type="submit"
